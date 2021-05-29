@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar className="nav-ul" />
       </Router>
     </>
   );

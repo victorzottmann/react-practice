@@ -3,14 +3,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar(props) {
+const Navbar = (props) => {
+  const navbarList = document.querySelector('.nav-ul');
+
+  const handleClick = () => {
+    if (!navbarList.classList.contains('nav-active')) {
+      navbarList.classList.add('nav-active');
+    } else {
+      navbarList.classList.remove('nav-active');
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
         <div className="logo">
           <h4>Victor Zottmann</h4>
         </div>
-        <ul className="nav-ul">
+        <ul className={props.className}>
           <li className="nav-items">
             <Link to="/" className="nav-links">
               Home
@@ -32,7 +42,7 @@ function Navbar(props) {
             </Link>
           </li>
         </ul>
-        <div className="mobile-nav-menu">
+        <div className="burger-menu" onClick={handleClick}>
           <div className="line1"></div>
           <div className="line2"></div>
           <div className="line3"></div>
@@ -40,6 +50,6 @@ function Navbar(props) {
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;
