@@ -1,17 +1,29 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import NavItems from './NavItems';
+import HamburgerMenu from './HamburgerMenu';
+import '../styles/Navbar.css';
 
 const Navbar = (props) => {
-  const navbarList = document.querySelector('.nav-ul');
+  const handleBurgerClick = () => {
+    const navList = document.querySelector('.nav-ul');
+    const navItems = document.querySelectorAll('.nav-items');
 
-  const handleClick = () => {
-    if (!navbarList.classList.contains('nav-active')) {
-      navbarList.classList.add('nav-active');
+    if (!navList.classList.contains('nav-active')) {
+      navList.classList.add('nav-active');
     } else {
-      navbarList.classList.remove('nav-active');
+      navList.classList.remove('nav-active');
     }
+
+    navItems.forEach((item, index) => {
+      if (item.style.animation) {
+        item.style.animation = ``;
+      } else {
+        item.style.animation = `navLinkFade 0.5s ease forwards ${
+          index / 7 + 0.3
+        }s`;
+      }
+    });
   };
 
   return (
@@ -21,32 +33,32 @@ const Navbar = (props) => {
           <h4>Victor Zottmann</h4>
         </div>
         <ul className={props.className}>
-          <li className="nav-items">
-            <Link to="/" className="nav-links">
-              Home
-            </Link>
-          </li>
-          <li className="nav-items">
-            <Link to="/about" className="nav-links">
-              About
-            </Link>
-          </li>
-          <li className="nav-items">
-            <Link to="/projects" className="nav-links">
-              Projects
-            </Link>
-          </li>
-          <li className="nav-items">
-            <Link to="/contact" className="nav-links">
-              Contact
-            </Link>
-          </li>
+          <NavItems
+            path="/"
+            liClass="nav-items"
+            anchorClass="nav-links"
+            text="Home"
+          />
+          <NavItems
+            path="/about"
+            liClass="nav-items"
+            anchorClass="nav-links"
+            text="About"
+          />
+          <NavItems
+            path="/projects"
+            liClass="nav-items"
+            anchorClass="nav-links"
+            text="Projects"
+          />
+          <NavItems
+            path="/contact"
+            liClass="nav-items"
+            anchorClass="nav-links"
+            text="Contact"
+          />
         </ul>
-        <div className="burger-menu" onClick={handleClick}>
-          <div className="line1"></div>
-          <div className="line2"></div>
-          <div className="line3"></div>
-        </div>
+        <HamburgerMenu onClick={handleBurgerClick} />
       </nav>
     </>
   );
