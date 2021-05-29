@@ -6,15 +6,18 @@ import '../styles/Navbar.css';
 
 const Navbar = (props) => {
   const handleBurgerClick = () => {
+    const burgerMenu = document.querySelector('.burger-menu');
     const navList = document.querySelector('.nav-ul');
     const navItems = document.querySelectorAll('.nav-items');
 
+    // toggle active class on navbar ul
     if (!navList.classList.contains('nav-active')) {
       navList.classList.add('nav-active');
     } else {
       navList.classList.remove('nav-active');
     }
 
+    // animate nav items in mobile view when burger menu is toggled
     navItems.forEach((item, index) => {
       if (item.style.animation) {
         item.style.animation = ``;
@@ -24,6 +27,9 @@ const Navbar = (props) => {
         }s`;
       }
     });
+
+    // animate burger menu when clicked
+    burgerMenu.classList.toggle('toggle');
   };
 
   return (
@@ -58,7 +64,7 @@ const Navbar = (props) => {
             text="Contact"
           />
         </ul>
-        <HamburgerMenu onClick={handleBurgerClick} />
+        <HamburgerMenu className="burger-menu" onClick={handleBurgerClick} />
       </nav>
     </>
   );
