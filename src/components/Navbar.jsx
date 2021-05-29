@@ -1,8 +1,8 @@
 import React from 'react';
 
+import '../styles/Navbar.css';
 import NavItems from './NavItems';
 import HamburgerMenu from './HamburgerMenu';
-import '../styles/Navbar.css';
 
 const Navbar = (props) => {
   const handleBurgerClick = () => {
@@ -10,14 +10,9 @@ const Navbar = (props) => {
     const navList = document.querySelector('.nav-ul');
     const navItems = document.querySelectorAll('.nav-items');
 
-    // toggle active class on navbar ul
-    if (!navList.classList.contains('nav-active')) {
-      navList.classList.add('nav-active');
-    } else {
-      navList.classList.remove('nav-active');
-    }
+    navList.classList.toggle('nav-active');
+    burgerMenu.classList.toggle('toggle');
 
-    // animate nav items in mobile view when burger menu is toggled
     navItems.forEach((item, index) => {
       if (item.style.animation) {
         item.style.animation = ``;
@@ -27,16 +22,13 @@ const Navbar = (props) => {
         }s`;
       }
     });
-
-    // animate burger menu when clicked
-    burgerMenu.classList.toggle('toggle');
   };
 
   return (
     <>
       <nav className="navbar">
         <div className="logo">
-          <h4>Victor Zottmann</h4>
+          <h2>Victor Zottmann</h2>
         </div>
         <ul className={props.className}>
           <NavItems
@@ -63,6 +55,11 @@ const Navbar = (props) => {
             anchorClass="nav-links"
             text="Contact"
           />
+          {/* <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div> */}
         </ul>
         <HamburgerMenu className="burger-menu" onClick={handleBurgerClick} />
       </nav>

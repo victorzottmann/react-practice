@@ -6,9 +6,11 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <>
-      <Router>
-        <Navbar className="nav-ul" />
-      </Router>
+      <header>
+        <Router>
+          <Navbar className="nav-ul" />
+        </Router>
+      </header>
     </>
   );
 }
